@@ -1,0 +1,49 @@
+name: build linaix-os
+
+on:
+  push:
+    branches: ["main"]
+    paths-ignore:
+      - 'readme'
+      - '.gitignore'
+      - 'README.md'
+  pull_request:
+    branches: ["main"]
+    paths-ignore:
+      - 'readme'
+      - '.gitignore'
+      - 'README.md'
+
+jobs:
+  linaix-os:
+    runs-on: ubuntu-latest
+    name: build linaix-os
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v4
+
+      - name: install packages
+        uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: xorriso clang mtools lld llvm genisoimage gcc g++ gcc-multilib g++-multilib
+          version: 1.0
+
+      - name: setup xmake
+        uses: wenxuanjun/github-action-setup-xmake@master
+        with:
+          xmake-version: latest
+          actions-cache-folder: '.xmake'
+          build-cache: true
+          package-cache: true
+
+      - name: build linaix-os
+        run: |
+          xmake f -y --arch=x86_64
+          xmake build iso
+
+      - name: upload linaix-os iso
+        uses: actions/upload-artifact@v4
+        with:
+          name: linaix-os iso
+          path: build/linaix-os.iso
+          compression-level: 9
