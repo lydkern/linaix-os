@@ -1,0 +1,28 @@
+#
+#    Copyright (C) 2025 NullPotOS Project
+#    Follow MIT License
+#
+
+# macOS cache
+.DS_Store
+
+# clangd cache
+.cache
+compile_commands.json
+
+# xmake cache
+.xmake
+
+# ide config
+.idea
+.vscode
+cmake-build-debug/
+
+# build
+build
+*.elf
+*.o
+*.iso
+*.img
+*.qcow2
+*.vmdk

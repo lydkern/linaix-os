@@ -1,0 +1,18 @@
+#
+#    Copyright (C) 2025 NullPotOS Project
+#    Follow MIT License
+#
+
+*.S linguist-language=Assembly
+*.asm linguist-language=Assembly
+*.lua linguist-language=Lua
+*.c linguist-language=C
+*.h linguist-language=C
+*.cpp linguist-language=CPP
+*.hpp linguist-language=CPP
+
+
+*.ld linguist-language=LinkerScript
+*.lds linguist-language=LinkerScript
+
+assets/** linguist-vendored
